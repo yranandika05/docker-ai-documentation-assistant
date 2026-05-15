@@ -7,26 +7,30 @@ A portfolio project that answers questions about Docker documentation using RAG 
 - Frontend: Next.js + TypeScript + Tailwind CSS
 - Backend: FastAPI + Python
 - Database: PostgreSQL with pgvector
-- AI: OpenAI API for embeddings and answer generation
+- AI: Ollama (local LLMs) for embeddings and answer generation
 - Containerization: Docker + Docker Compose
 
 ## Architecture
 
 - `frontend/` - Next.js chat UI
 - `backend/` - FastAPI API
+- `backend/app/ai/` - Ollama client for embeddings and LLM
 - `backend/app/ingestion/` - Scripts for loading and chunking Docker docs
 - `backend/app/retrieval/` - Vector search logic
 - `backend/app/api/` - Chat and search endpoints
 
 ## Setup
 
-1. Clone the repository
-2. Create a `.env` file with your OpenAI API key:
+1. Install Ollama: https://ollama.ai/
+2. Pull the required models:
    ```
-   OPENAI_API_KEY=your_openai_api_key_here
+   ollama pull mistral:7b
+   ollama pull nomic-embed-text
    ```
-3. Run `docker-compose up --build`
-4. Access the frontend at http://localhost:3000
+3. Start Ollama: `ollama serve`
+4. Clone the repository
+5. Run `docker-compose up --build`
+6. Access the frontend at http://localhost:3000
 
 ## MVP Features
 
@@ -37,7 +41,7 @@ A portfolio project that answers questions about Docker documentation using RAG 
 
 ## TODO
 
-- Implement ingestion script
-- Implement retrieval logic
-- Implement API endpoints
-- Build frontend UI
+- Implement full ingestion script
+- Implement vector search with pgvector
+- Add database schema and models
+- Test end-to-end RAG flow

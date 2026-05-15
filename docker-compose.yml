@@ -12,15 +12,26 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    command: serve
+
   backend:
     build: ./backend
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_LLM_MODEL=mistral:7b
+      - OLLAMA_EMBEDDING_MODEL=nomic-embed-text
       - DATABASE_URL=postgresql://user:password@postgres:5432/docker_assistant
     ports:
       - "8000:8000"
     depends_on:
       - postgres
+      - ollama
 
   frontend:
     build: ./frontend
@@ -31,3 +42,4 @@ services:
 
 volumes:
   postgres_data:
+  ollama_data:
