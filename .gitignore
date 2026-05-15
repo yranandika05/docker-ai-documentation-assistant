@@ -1,0 +1,37 @@
+.DS_Store
+.env
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+*.bak
+*.swp
+*.swo
+
+# Python virtual environments
+venv/
+.envrc
+.env.local
+.env.*
+
+# Node modules
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Docker
+docker-compose.override.yml
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Ollama data (if stored locally)
+ollama_data/
