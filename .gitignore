@@ -35,3 +35,6 @@ Thumbs.db
 
 # Ollama data (if stored locally)
 ollama_data/
+
+# Docker Repo
+backend/data
